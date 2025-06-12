@@ -1,14 +1,14 @@
 # Dais Demo
 
 #### Network Isolation
-| DASF Control # | Details | Configuration |
-|----------|----------|----------|
-| 1   | Single Sign-On with Multi-Factor Authentication    | Enabled in Account Console    |
-| 2   | Sync users and groups   | OOTB, Account Console Operation    |
-| 3    | Restrict access w/ IP ACLs    | Row 3    |
-| 4    | Restrict access w/ private link     | Row 2    |
-| 65    | Restrict outbound connections from models    | Row 3    |
-| 62    | Implement network segmentation (NCC & PL)    | Row 2    |
+| DASF Control # | Details | Config Location | Terraform Resource Name |
+|----------|----------|----------|----------|
+| 1   | Single Sign-On with Multi-Factor Authentication    | Account Console > Settings    | N/A|
+| 2   | Sync users and groups   | Account Console > User Management    |N/A|
+| 3    | Restrict access w/ IP ACLs    | N/A   | databricks_ip_access_list | 
+| 4    | Restrict access w/ private link     | [azure-dbx-dbfs-fw/main.tf](https://github.com/tonykhbo/dais25-dasf-demo/blob/master/azure-dbx-dbfs-fw/azure_dbx_infra/main.tf)| azurerm_databricks_workspace |
+| 65    | Restrict outbound connections from models    | Account Console > Cloud Resources > Network Policies  | N/A
+| 62    | Implement network segmentation (NCC & PL)    | Account Console > Cloud Resources > Network Connectivity Configurations   | N/A
 
 
 #### Guard against backdoor access
