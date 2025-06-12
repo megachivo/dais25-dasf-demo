@@ -12,26 +12,26 @@
 
 
 #### Guard against backdoor access
-| DASF Control # | Details | Configuration |
-|----------|----------|----------|
-| 62   | Encrypt data at rest with CMK    | Row 1    |
-| 63   | Encrypt models  | Row 2    |
+| DASF Control # | Details | Config Location | Terraform Resource Name |
+|----------|----------|----------|----------|
+| 62   | Encrypt data at rest with CMK    | [azure-dbx-dbfs-fw/main.tf](https://github.com/tonykhbo/dais25-dasf-demo/blob/master/azure-dbx-dbfs-fw/azure_dbx_infra/main.tf)   | azurerm_databricks_workspace | 
+| 63   | Encrypt models  | Row 2    | | 
 
 #### Least privilege access to data and AI
-| DASF Control # | Details | Configuration |
-|----------|----------|----------|
-| 5   | Control access to data     | Row 1    |
-| 18  | Control access to models  | Row 2    |
-| 51    | Share data and AI assets securely    | Row 3    |
-| 57    | Use attribute-based access controls (ABAC)    | Row 3    |
-| 58    | Protect data w/ filters & masks    | Row 3    |
-| 64    | Limit access from AI models and agents (OBO)    | Row 3    |
+| DASF Control # | Details | Config Location | Terraform Resource Name |
+|----------|----------|----------|----------|
+| 5   | Control access to data     | Workspace > Unity Catalog > [Permissions](https://docs.databricks.com/aws/en/data-governance/unity-catalog/manage-privileges/ownership)   | N/A |
+| 18  | Control access to models  | [Workspace > Unity Catalog](https://docs.databricks.com/aws/en/machine-learning/manage-model-lifecycle/)  | N/A |
+| 51    | Share data and AI assets securely    | Workspace > Unity Catalog > [Delta Sharing](https://docs.databricks.com/aws/en/delta-sharing/set-up)    | N/A |
+| 57    | Use attribute-based access controls (ABAC)    | Unity Catalog > [Private Preview](https://docs.databricks.com/aws/en/data-governance/unity-catalog/abac/)   | N/A |
+| 58    | Protect data w/ filters & masks    | Workspace > Unity Catalog > [Row filter](https://docs.databricks.com/aws/en/tables/row-and-column-filters#apply-a-row-filter) / [Mask](https://docs.databricks.com/aws/en/tables/row-and-column-filters#apply-a-column-mask)     | N/A |
+| 64    | Limit access from AI models and agents (OBO)    | Workspace > Unity Catalog > Permissions    | N/A |
 
 
 #### AI guardrails
-| DASF Control # | Details | Configuration |
-|----------|----------|----------|
-| 37   | Implement Input & output AI guardrails    | Row 1    |
-| 54   | Streamline the usage and management of various large language model (LLM) providers  | Row 2    |
-| 55   | Set up inference tables to monitor and debug models  | Row 2    |
-| 60   | Rate limit number of inference queries  | Row 2    |
+| DASF Control # | Details | Config Location | Terraform Resource Name |
+|----------|----------|----------|----------|
+| 37   | Implement Input & output AI guardrails    | Workspace > Serving > AI Gateway   | N/A
+| 54   | Streamline the usage and management of various large language model (LLM) providers  | Workspace > Serving   | N/A
+| 55   | Set up inference tables to monitor and debug models  | Workspace > Serving > AI Gateway    | N/A
+| 60   | Rate limit number of inference queries  | Workspace > Serving > AI Gateway    | N/A
