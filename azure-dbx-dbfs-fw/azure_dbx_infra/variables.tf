@@ -47,3 +47,24 @@ variable description {
   description = "For tagging the RG"
   type        = string
 }
+
+variable "client_config" {
+  description = "Client configuration object containing tenant_id and other properties."
+  type = object({
+    tenant_id = string
+    object_id = string
+  })
+}
+
+
+# Get the current client config for tenant and object id
+data "azurerm_client_config" "current" {
+}
+
+# Get the Azure DataBricks service principal object id
+data "azuread_application_published_app_ids" "well_known" {}
+
+# Get the object id of the Azure DataBricks service principal
+data "azuread_service_principal" "this" {
+  client_id = data.azuread_application_published_app_ids.well_known.result["AzureDataBricks"]
+}
