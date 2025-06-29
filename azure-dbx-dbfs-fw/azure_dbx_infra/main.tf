@@ -132,9 +132,12 @@ resource "azurerm_databricks_workspace" "this" {
   sku                           = "premium"
   public_network_access_enabled = true // no front end privatelink deployment
   network_security_group_rules_required = "NoAzureDatabricksRules"
-  customer_managed_key_enabled = false # TODO for more secure deployment
+  customer_managed_key_enabled = true # TODO for more secure deployment
   default_storage_firewall_enabled = true
+  infrastructure_encryption_enabled     = true
   access_connector_id = azurerm_databricks_access_connector.dbfs.id
+  managed_disk_cmk_key_vault_key_id     = azurerm_key_vault_key.managed_disk.id
+  managed_services_cmk_key_vault_key_id = azurerm_key_vault_key.managed_services.id
   tags                          = { 
     Owner = "${var.email}" ,
     RemoveAfter = "${var.remove_date}",
